@@ -1,0 +1,13 @@
+video_id,channel_id,video_title,category,publish_date
+1001,101,Python ETL Tutorial,Education,2026-09-01
+1002,101,SQL Window Functions,Education,2026-09-03
+1003,102,PySpark Beginner Guide,Education,2026-09-05
+1004,102,Data Engineering Roadmap,Education,2026-09-07
+1005,103,Top 10 Places in India,Travel,2026-09-02
+1006,103,Weekend in New York,Travel,2026-09-08
+1007,104,Best PC Games 2026,Gaming,2026-09-04
+1008,104,Gaming Setup Guide,Gaming,2026-09-10
+1009,105,Easy Indian Recipes,Food,2026-09-06
+1010,105,Street Food Tour,Food,2026-09-11
+1011,106,Python Pandas Full Course,Education,2026-09-09
+1012,106,Build a Data Pipeline,Education,2026-09-12

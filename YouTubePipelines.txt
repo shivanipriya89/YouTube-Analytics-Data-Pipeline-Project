@@ -1,0 +1,370 @@
+YOUTUBE ANALYTICS DATA PIPELINE PROJECT
+=======================================
+
+Tools:
+Python, SQL, PySpark, ETL, MySQL, Data Warehouse, Kafka, Tableau
+
+Airflow: NOT INCLUDED
+
+
+SECTION A — PYTHON ETL
+======================
+
+Q1. Data Ingestion
+Using Python/Pandas, load the following datasets:
+- videos.csv
+- channels.csv
+- video_metrics.csv
+- traffic_sources.csv
+
+Display the first 5 records of each dataset.
+
+
+Q2. Data Quality Check
+Using Python, check the datasets for:
+- Null values
+- Duplicate rows
+- Data types
+- Missing video_id
+- Missing channel_id
+
+Create a simple data-quality report.
+
+
+Q3. Data Cleaning
+Clean the datasets using Python.
+
+Tasks:
+- Remove duplicates
+- Convert dates to datetime
+- Convert numeric columns to appropriate data types
+- Handle missing values
+- Standardize column names
+
+Save the cleaned datasets into a cleaned_data/ folder.
+
+
+Q4. Create an ETL Pipeline
+Create a Python ETL pipeline:
+
+Extract → Transform → Load
+
+Extract the CSV files, transform the data, and load the cleaned data into MySQL staging tables.
+
+
+SECTION B — SQL ANALYTICS
+=========================
+
+Q5. Basic Video Analysis
+Find the following for every video:
+- Video title
+- Category
+- Total views
+- Total likes
+- Total comments
+
+
+Q6. Top Videos
+Find the top 5 videos by total views.
+
+
+Q7. Engagement Rate
+Calculate the engagement rate for every video using:
+
+Engagement Rate =
+(Likes + Comments + Shares) / Views × 100
+
+
+Q8. Channel Performance
+Calculate total views for each channel.
+
+Output:
+- channel_name
+- total_views
+
+
+Q9. Category Performance
+Calculate the following for each category:
+- Total views
+- Total likes
+- Total comments
+
+
+Q10. Window Function
+Use RANK() or DENSE_RANK() to rank videos based on views within each category.
+
+
+SECTION C — DATA WAREHOUSE
+==========================
+
+Q11. Design the Star Schema
+Design a YouTube Analytics Data Warehouse using a star schema.
+
+Create the following tables:
+- dim_video
+- dim_channel
+- dim_date
+- dim_traffic_source
+- fact_video_metrics
+- fact_video_events
+
+Identify:
+- Primary keys
+- Foreign keys
+- Measures
+- Dimensions
+- Grain of each fact table
+
+
+Q12. Create Warehouse Tables
+Write MySQL CREATE TABLE statements for the complete star schema.
+
+
+Q13. Load Dimension Tables
+Using Python or PySpark, load the cleaned data into:
+- dim_video
+- dim_channel
+- dim_date
+- dim_traffic_source
+
+
+Q14. Load Fact Table
+Create and populate fact_video_metrics with:
+
+- video_key
+- channel_key
+- date_key
+- views
+- likes
+- comments
+- shares
+- watch_time_minutes
+- subscribers_gained
+
+
+Q15. Warehouse KPI Query
+Write one SQL query that returns:
+
+- Total views
+- Total likes
+- Total comments
+- Total watch time
+- Total subscribers gained
+
+
+SECTION D — PYSPARK
+===================
+
+Q16. Read Data with PySpark
+Read the following datasets into PySpark DataFrames:
+- videos.csv
+- channels.csv
+- video_metrics.csv
+
+Display the schema and first few records.
+
+
+Q17. Clean Data Using PySpark
+Perform the following operations:
+- Handle null values
+- Remove duplicates
+- Convert data types
+- Convert dates
+- Rename columns where required
+
+
+Q18. Join Datasets Using PySpark
+Join the following datasets:
+- videos
+- channels
+- video_metrics
+
+Create a final DataFrame containing:
+
+- video_title
+- channel_name
+- category
+- views
+- likes
+- comments
+- watch_time_minutes
+
+
+Q19. PySpark Aggregation
+Calculate total views and total likes by category.
+
+Output:
+- category
+- total_views
+- total_likes
+
+
+Q20. PySpark Window Function
+Use a PySpark window function to find the top 3 videos in each category based on views.
+
+
+SECTION E — KAFKA
+=================
+
+Q21. Create Kafka Topic
+Create a Kafka topic named:
+
+youtube_events
+
+
+Q22. Python Kafka Producer
+Write a Python Kafka Producer that reads video_events.csv and sends each event to the:
+
+youtube_events
+
+Kafka topic.
+
+
+Q23. Kafka Consumer
+Create a Python Kafka Consumer that reads messages from:
+
+youtube_events
+
+Display:
+- event_id
+- video_id
+- event_type
+- user_country
+
+
+Q24. Kafka to PySpark
+Create a simple streaming pipeline:
+
+Kafka
+↓
+PySpark
+↓
+Processed Events
+
+Read the Kafka events using PySpark Structured Streaming.
+
+
+Q25. Streaming Aggregation
+Using PySpark Structured Streaming, calculate the number of events by:
+
+- event_type
+
+For example:
+- view
+- like
+- comment
+
+
+SECTION F — END-TO-END ETL PIPELINE
+===================================
+
+Q26. Build the Complete Pipeline
+Build the following end-to-end data pipeline:
+
+CSV
+↓
+Python ETL
+↓
+MySQL Staging
+↓
+PySpark Transformation
+↓
+Data Warehouse
+↓
+SQL Analytics
+↓
+Tableau
+
+
+Q27. Data Quality Validation
+Before loading the data into the warehouse, validate:
+
+- video_id exists
+- channel_id exists
+- Views >= 0
+- Likes >= 0
+- Comments >= 0
+- Dates are valid
+- Duplicate metric records do not exist
+
+Create a data-validation report.
+
+
+SECTION G — TABLEAU VISUALIZATION
+=================================
+
+Q28. KPI Dashboard
+Create a Tableau dashboard containing:
+
+- Total Views
+- Total Likes
+- Total Comments
+- Total Watch Time
+- Subscribers Gained
+
+
+Q29. Video and Category Analysis
+Create the following Tableau visualizations:
+
+1. Bar chart — Views by Category
+2. Bar chart — Top 10 Videos by Views
+3. Line chart — Views by Date
+
+Add filters for:
+- Category
+- Channel
+- Date
+
+
+Q30. YouTube Analytics Dashboard
+Create a final Tableau dashboard containing:
+
+- Total Views
+- Total Likes
+- Total Comments
+- Total Subscribers
+- Views by Category
+- Views Trend
+- Top Videos
+- Traffic Sources
+
+Add filters for:
+- Channel
+- Category
+- Date
+- Traffic Source
+
+
+FINAL PROJECT PIPELINE
+======================
+
+CSV Data
+   ↓
+Python ETL
+   ↓
+MySQL Staging
+   ↓
+PySpark
+   ↓
+Data Warehouse
+   ↓
+SQL Analytics
+   ↓
+Tableau Dashboard
+
+For real-time data:
+
+Video Events
+   ↓
+Kafka Producer
+   ↓
+Kafka Topic
+   ↓
+PySpark Structured Streaming
+   ↓
+Processed Data
+   ↓
+Data Warehouse / Analytics
+
+
+AIRFLOW IS NOT INCLUDED IN THIS PROJECT.
